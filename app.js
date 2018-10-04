@@ -18,18 +18,12 @@ app.filter('searchFor', function(){
 	};
 });
 
-function searchController($scope){
-	$scope.movies = [
-	{name:"The Godfather",releaseYr:"1972"},
-	{name:"Inception",releaseYr:"2010"},
-	{name:"Harry Potter and the Chamber of Secrets",releaseYr:"2012"},
-	{name:"Titanic",releaseYr:"1997"},
-	{name:"Thor:Ragnarok",releaseYr:"2017"},
-	{name:"Forest Gump",releaseYr:"1994"},
-	{name:"Star Wars",releaseYr:"1977"},
-	{name:"Justice League",releaseYr:"2017"},
-	{name:"The Dark Knight",releaseYr:"2008"},
-	{name:"Avatar",releaseYr:"2009"},
-	{name:"The Avengers",releaseYr:"2012"}
-	];
-}
+
+
+var apdb = angular.module("myApp", []);
+console.log("OK");
+apdb.controller('movies', function($scope, $http) {
+	$http.get("acces.php").then(function (response) {
+		console.log(response);
+		$scope.names = response.data.records;});
+});
